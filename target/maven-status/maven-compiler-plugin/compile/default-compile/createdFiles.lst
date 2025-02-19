@@ -1,0 +1,8 @@
+main/java/resource/AuthResource.class
+main/java/MessageRepo.class
+main/java/util/PasswordUtil.class
+META-INF/panache-archive.marker
+main/java/model/AppUser.class
+main/java/model/Message.class
+main/java/resource/ChatResource.class
+main/java/resource/UserResource.class

@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.exalple</groupId>
+    <artifactId>chat-api</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
+        <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
+        <quarkus.platform.version>3.6.6</quarkus.platform.version>
+        <quarkus.plugin.version>3.6.6</quarkus.plugin.version>
+    </properties>
+    <repositories>
+        <repository>
+            <id>microprofile-releases</id>
+            <url>https://repo.eclipse.org/content/repositories/microprofile-release/</url>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${quarkus.platform.group-id}</groupId>
+                <artifactId>${quarkus.platform.artifact-id}</artifactId>
+                <version>${quarkus.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!--Rest API-->
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-resteasy-reactive</artifactId>
+            </dependency>
+            
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-resteasy-reactive-jsonb</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-arc</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-junit5</artifactId>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- h2 database-->
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-jdbc-h2</artifactId>
+            </dependency>
+
+            <!--Hibernate orm with with Panache-->
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-hibernate-orm-panache</artifactId>
+            </dependency>
+            
+            <!--JWT support -->
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-smallrye-jwt</artifactId>
+            </dependency>
+            
+            <!-- BCrypt -->
+            <dependency>
+                <groupId>at.favre.lib</groupId>
+                <artifactId>bcrypt</artifactId>
+                <version>0.10.2</version>
+            </dependency>
+            <!-- Microprofile reactive messaging -->
+            <dependency>
+                <groupId>org.eclipse.microprofile.reactive.messaging</groupId>
+                <artifactId>microprofile-reactive-messaging-api</artifactId>
+                <version>3.0.1</version>
+            </dependency>
+        
+
+            <!--kafka messaging -->
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>
+                <version>3.6.6</version>
+            </dependency>
+
+        </dependencies>
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-maven-plugin</artifactId>
+            <version>${quarkus.plugin.version}</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>build</goal>
+                        <goal>dev</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+</project>
