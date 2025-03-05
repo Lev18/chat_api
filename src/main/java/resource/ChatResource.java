@@ -5,6 +5,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.validation.Valid;
 
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
@@ -25,14 +27,18 @@ public class ChatResource {
 
     @Inject 
     @Channel("group-out")
-    Emitter<String>groupEmmiter;
+    Emitter<String> groupEmmiter;
 
     @POST
     @Path("/broadcast")
     @Transactional
-    public void sendEveryone(Message message) {
+    public Response sendEveryone(@Valid Message message) {
+        message.receiver = "all";
         message.persist();
+        // log.info(message.content);
+        System.out.println(message.content);
         broadcastEmmiter.send(message.content);
+        return Response.accepted().build();
     }
 
     @POST
@@ -46,6 +52,6 @@ public class ChatResource {
      @GET
      @Path("/history")
      public List<Message> getChatHistory(@QueryParam("user") String username) {
-         return Message.list("sender = ?1 OR receiver = ?1", username);
+         return Message.list("sender = ?1 OR receiver = ?1 OR receiver = 'all'", username);
      }
 }
