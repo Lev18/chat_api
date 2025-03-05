@@ -14,6 +14,7 @@
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.version>3.6.6</quarkus.platform.version>
         <quarkus.plugin.version>3.6.6</quarkus.plugin.version>
+        <quarkus.version>2.16.6.Final</quarkus.version>
     </properties>
     <repositories>
         <repository>
@@ -62,6 +63,11 @@
                 <artifactId>quarkus-jdbc-h2</artifactId>
             </dependency>
 
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-jdbc-postgresql</artifactId>
+                <version>${quarkus.version}</version>
+            </dependency>
             <!--Hibernate orm with with Panache-->
             <dependency>
                 <groupId>io.quarkus</groupId>
@@ -73,6 +79,28 @@
                 <groupId>io.quarkus</groupId>
                 <artifactId>quarkus-smallrye-jwt</artifactId>
             </dependency>
+                <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-smallrye-jwt-build</artifactId>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>3.1.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-elytron-security-properties-file</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-websockets</artifactId>
+                <version>3.19.0</version>
+            </dependency>
             
             <!-- BCrypt -->
             <dependency>
@@ -80,19 +108,30 @@
                 <artifactId>bcrypt</artifactId>
                 <version>0.10.2</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.mindrot</groupId>
+                <artifactId>jbcrypt</artifactId>
+                <version>0.4</version>
+            </dependency>
+
             <!-- Microprofile reactive messaging -->
             <dependency>
                 <groupId>org.eclipse.microprofile.reactive.messaging</groupId>
                 <artifactId>microprofile-reactive-messaging-api</artifactId>
                 <version>3.0.1</version>
-            </dependency>
-        
+            </dependency> 
 
             <!--kafka messaging -->
             <dependency>
                 <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>
-                <version>3.6.6</version>
+                <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>         
+            </dependency>
+
+            <dependency>
+                <groupId>io.smallrye.reactive</groupId>
+                <artifactId>smallrye-reactive-messaging-mqtt</artifactId>
+                <version>3.4.0</version>
             </dependency>
 
         </dependencies>
